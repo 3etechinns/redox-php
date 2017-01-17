@@ -1,0 +1,30 @@
+{
+    "name": "rwos/redox",
+    "description": "PHP mappings for Redox Engine",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "authors": [
+        {
+            "name": "Woody Gilk",
+            "email": "woody.gilk@roundingwell.com"
+        }
+    ],
+    "config": {
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    },
+    "autoload": {
+        "psr-4": {
+            "RoundingWell\\Redox\\": "src/"
+        }
+    },
+    "require": {
+        "netresearch/jsonmapper": "^1.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.0"
+    }
+}
