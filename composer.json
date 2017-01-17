@@ -21,6 +21,11 @@
             "RoundingWell\\Redox\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "RoundingWell\\Redox\\": "tests/"
+        }
+    },
     "require": {
         "netresearch/jsonmapper": "^1.1"
     },
