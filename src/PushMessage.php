@@ -4,7 +4,7 @@ namespace RoundingWell\Redox;
 
 use JsonMapper;
 
-class Push extends AbstractMessage
+class PushMessage extends AbstractMessage
 {
     /**
      * Create a new instance from a file.

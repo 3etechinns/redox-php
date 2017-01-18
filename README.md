@@ -11,14 +11,27 @@ composer require rwos/redox
 ## Usage
 
 ```php
-use RoundingWell\Redox\Push;
+use RoundingWell\Redox\PushMessage;
 
 // Using a file path
-$push = Push::fromFile($path);
+$push = PushMessage::fromFile($path);
 
 // Using a JSON string
-$push = Push::fromString($json);
+$push = PushMessage::fromString($json);
 
 // Using decoded JSON data
-$push = Push::fromObject($data);
+$push = PushMessage::fromObject($data);
 ```
+
+Once created, the entire Redox document structure will be available:
+
+```php
+$patientFirstName = $push->Header->Patient->Demographics->FirstName;
+
+foreach ($push->Allergies as $allergy) {
+    echo "$patientFirstName is allergic to ", $allergy->Substance->Name, "\n";
+}
+```
+
+Refer the [Redox data models](https://app.redoxengine.com/#/docs/datamodels/) for
+a complete reference of available fields.

@@ -6,7 +6,7 @@ use PHPUnit_Framework_TestCase as TestCase;
 
 use function JmesPath\search;
 
-class PushTest extends TestCase
+class PushMessageTest extends TestCase
 {
     /**
      * @var Push
@@ -24,7 +24,7 @@ class PushTest extends TestCase
         $string = file_get_contents($file);
 
         $this->json = json_decode($string);
-        $this->push = Push::fromObject($this->json);
+        $this->push = PushMessage::fromObject($this->json);
 
         // Convert the push message back to a plain object
         $this->push = json_decode(json_encode($this->push));
