@@ -5,17 +5,17 @@ namespace RoundingWell\Redox\Fields;
 class EncounterLocation extends AbstractField
 {
     /**
-     * @var EncounterLocationAddress
+     * @var EncounterLocationAddress|null
      */
     public $Address;
 
     /**
-     * @var EncounterLocationType
+     * @var EncounterLocationType|null
      */
     public $Type;
 
     /***
-     * @var string
+     * @var string|null
      */
     public $Name;
 }

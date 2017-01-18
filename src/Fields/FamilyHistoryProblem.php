@@ -17,7 +17,7 @@ class FamilyHistoryProblem extends AbstractField
     public $DateTime;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $AgeAtOnset;
 

@@ -7,12 +7,12 @@ class Problem extends AbstractField
     use Traits\HasCodeProperties;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     public $StartDate;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     public $EndDate;
 

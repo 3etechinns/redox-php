@@ -10,17 +10,17 @@ class HeaderDocumentVisit extends AbstractField
     public $Location;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     public $StartDateTime;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $Reason;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     public $EndDateTime;
 }

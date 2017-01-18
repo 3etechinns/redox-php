@@ -5,12 +5,12 @@ namespace RoundingWell\Redox\Fields;
 class FamilyHistoryRelationDemographics extends AbstractField
 {
     /**
-     * @var string
+     * @var string|null
      */
     public $Sex;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     public $DOB;
 }

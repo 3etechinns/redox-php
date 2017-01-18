@@ -12,7 +12,7 @@ class VitalSignObservation extends AbstractField
     public $Status;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $Interpretation;
 

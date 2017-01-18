@@ -20,12 +20,12 @@ class HeaderDocumentAuthor extends AbstractField
     public $Type;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $FirstName;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $LastName;
 
@@ -35,17 +35,17 @@ class HeaderDocumentAuthor extends AbstractField
     public $Credentials;
 
     /**
-     * @var HeaderDocumentAuthorAddress
+     * @var HeaderDocumentAuthorAddress|null
      */
     public $Address;
 
     /**
-     * @var HeaderDocumentAuthorLocation
+     * @var HeaderDocumentAuthorLocation|null
      */
     public $Location;
 
     /**
-     * @var HeaderDocumentAuthorPhoneNumber
+     * @var HeaderDocumentAuthorPhoneNumber|null
      */
     public $PhoneNumber;
 }

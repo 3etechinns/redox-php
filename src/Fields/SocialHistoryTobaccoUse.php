@@ -7,7 +7,7 @@ class SocialHistoryTobaccoUse extends AbstractField
     use Traits\HasCodeProperties;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     public $StartDate;
 

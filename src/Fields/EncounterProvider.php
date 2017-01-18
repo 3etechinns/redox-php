@@ -30,22 +30,22 @@ class EncounterProvider extends AbstractField
     public $Credentials;
 
     /**
-     * @var EncounterProviderAddress
+     * @var EncounterProviderAddress|null
      */
     public $Address;
 
     /**
-     * @var EncounterProviderLocation
+     * @var EncounterProviderLocation|null
      */
     public $Location;
 
     /**
-     * @var EncounterProviderPhoneNumber
+     * @var EncounterProviderPhoneNumber|null
      */
     public $PhoneNumber;
 
     /**
-     * @var EncounterProviderRole
+     * @var EncounterProviderRole|null
      */
     public $Role;
 }

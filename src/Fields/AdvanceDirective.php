@@ -7,12 +7,12 @@ class AdvanceDirective extends AbstractField
     use Traits\HasCodeProperties;
 
     /**
-     * @var AdvanceDirectiveType
+     * @var AdvanceDirectiveType|null
      */
     public $Type;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     public $StartDate;
 
@@ -22,7 +22,7 @@ class AdvanceDirective extends AbstractField
     public $EndDate;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $ExternalReference;
 

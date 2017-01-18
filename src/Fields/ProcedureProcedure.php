@@ -7,12 +7,12 @@ class ProcedureProcedure extends AbstractProcedureField
     use Traits\HasCodeProperties;
 
     /**
-     * @var \DateTime
+     * @var \DateTime|null
      */
     public $DateTime;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $Status;
 }

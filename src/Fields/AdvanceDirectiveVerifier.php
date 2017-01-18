@@ -5,17 +5,17 @@ namespace RoundingWell\Redox\Fields;
 class AdvanceDirectiveVerifier extends AbstractField
 {
     /**
-     * @var string
+     * @var string|null
      */
     public $FirstName;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $LastName;
 
     /**
-     * @var string
+     * @var string|null
      */
     public $Credentials;
 
