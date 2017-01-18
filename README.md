@@ -1,6 +1,14 @@
 # Redox for PHP
 
-PHP mappings for [Redox Engine](https://www.redoxengine.com/).
+[![Latest Stable Version](https://img.shields.io/packagist/v/RoundingWellOS/redox-php.svg)](https://packagist.org/packages/RoundingWellOS/redox-php)
+[![License](https://img.shields.io/packagist/l/RoundingWellOS/redox-php.svg)](https://github.com/RoundingWellOS/redox-php/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/RoundingWellOS/redox-php.svg)](https://travis-ci.org/RoundingWellOS/redox-php)
+[![Code Coverage](https://scrutinizer-ci.com/g/RoundingWellOS/redox-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/RoundingWellOS/redox-php/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/RoundingWellOS/redox-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/RoundingWellOS/redox-php/?branch=master)
+
+PHP mappings for [Redox Engine](https://www.redoxengine.com/). Attempts to be
+[PSR-1](http://www.php-fig.org/psr/psr-1/), [PSR-2](http://www.php-fig.org/psr/psr-2/),
+and [PSR-4](http://www.php-fig.org/psr/psr-2/) compliant.
 
 ## Installation
 
