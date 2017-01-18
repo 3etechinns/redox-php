@@ -1,7 +1,7 @@
 # Redox for PHP
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/RoundingWellOS/redox-php.svg)](https://packagist.org/packages/RoundingWellOS/redox-php)
-[![License](https://img.shields.io/packagist/l/RoundingWellOS/redox-php.svg)](https://github.com/RoundingWellOS/redox-php/blob/master/LICENSE)
+[![Latest Stable Version](https://img.shields.io/packagist/v/rwos/redox.svg)](https://packagist.org/packages/rwos/redox)
+[![License](https://img.shields.io/packagist/l/rwos/redox.svg)](https://github.com/RoundingWellOS/redox-php/blob/master/LICENSE)
 [![Build Status](https://travis-ci.org/RoundingWellOS/redox-php.svg)](https://travis-ci.org/RoundingWellOS/redox-php)
 [![Code Coverage](https://scrutinizer-ci.com/g/RoundingWellOS/redox-php/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/RoundingWellOS/redox-php/?branch=master)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/RoundingWellOS/redox-php/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/RoundingWellOS/redox-php/?branch=master)
