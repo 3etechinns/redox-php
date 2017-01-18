@@ -4,30 +4,12 @@ namespace RoundingWell\Redox\Fields;
 
 class AdvanceDirective extends AbstractField
 {
+    use Traits\HasCodeProperties;
+
     /**
-     * @var Code
+     * @var AdvanceDirectiveType
      */
     public $Type;
-
-    /**
-     * @var string
-     */
-    public $Code;
-
-    /**
-     * @var string
-     */
-    public $CodeSystem;
-
-    /**
-     * @var string
-     */
-    public $CodeSystemName;
-
-    /**
-     * @var string
-     */
-    public $Name;
 
     /**
      * @var \DateTime
@@ -45,12 +27,12 @@ class AdvanceDirective extends AbstractField
     public $ExternalReference;
 
     /**
-     * @var Verifier[]
+     * @var AdvanceDirectiveVerifier[]
      */
     public $VerifiedBy;
 
     /**
-     * @var Custodian[]
+     * @var AdvanceDirectiveCustodian[]
      */
     public $Custodians;
 }

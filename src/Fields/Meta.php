@@ -25,17 +25,17 @@ class Meta extends AbstractField
     public $Test;
 
     /**
-     * @var Source|null
+     * @var MetaSource|null
      */
     public $Source;
 
     /**
-     * @var Message|null
+     * @var MetaMessage|null
      */
     public $Message;
 
     /**
-     * @var Transmission|null
+     * @var MetaTransmission|null
      */
     public $Transmission;
 }

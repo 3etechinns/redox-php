@@ -5,7 +5,7 @@ namespace RoundingWell\Redox\Fields;
 class Encounter extends AbstractField
 {
     /**
-     * @var Code
+     * @var EncounterType
      */
     public $Type;
 
@@ -20,22 +20,22 @@ class Encounter extends AbstractField
     public $EndDateTime;
 
     /**
-     * @var Provider[]
+     * @var EncounterProvider[]
      */
     public $Providers;
 
     /**
-     * @var DetailedLocation[]
+     * @var EncounterLocation[]
      */
     public $Locations;
 
     /**
-     * @var Code[]
+     * @var EncounterDiagnosis[]
      */
     public $Diagnosis;
 
     /**
-     * @var Code[]
+     * @var EncounterReason[]
      */
     public $ReasonForVisit;
 }

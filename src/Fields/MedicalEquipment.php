@@ -20,7 +20,7 @@ class MedicalEquipment extends AbstractField
     public $Quantity;
 
     /**
-     * @var Product
+     * @var MedicalEquipmentProduct
      */
     public $Product;
 }

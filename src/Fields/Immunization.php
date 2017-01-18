@@ -10,17 +10,17 @@ class Immunization extends AbstractField
     public $DateTime;
 
     /**
-     * @var Code
+     * @var ImmunizationRoute
      */
     public $Route;
 
     /**
-     * @var Product
+     * @var ImmunizationProduct
      */
     public $Product;
 
     /**
-     * @var Dose
+     * @var ImmunizationDose
      */
     public $Dose;
 }

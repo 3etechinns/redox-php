@@ -56,11 +56,6 @@ class Push extends AbstractMessage
     public $Header;
 
     /**
-     * @var Fields\Patient
-     */
-    public $Patient;
-
-    /**
      * @var Fields\AdvanceDirective[]
      */
     public $AdvanceDirectives;

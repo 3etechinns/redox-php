@@ -5,12 +5,12 @@ namespace RoundingWell\Redox\Fields;
 class FamilyHistory extends AbstractField
 {
     /**
-     * @var Relation
+     * @var FamilyHistoryRelation
      */
     public $Relation;
 
     /**
-     * @var RelationProblem[]
+     * @var FamilyHistoryProblem[]
      */
     public $Problems;
 }

@@ -10,17 +10,17 @@ class PlanOfCareMedication extends AbstractField
     public $Status;
 
     /**
-     * @var Dose
+     * @var PlanOfCareMedicationDose
      */
     public $Dose;
 
     /**
-     * @var Dose
+     * @var PlanOfCareMedicationRate
      */
     public $Rate;
 
     /**
-     * @var Code
+     * @var PlanOfCareMedicationRoute
      */
     public $Route;
 
@@ -35,12 +35,12 @@ class PlanOfCareMedication extends AbstractField
     public $EndDate;
 
     /**
-     * @var Frequency
+     * @var PlanOfCareMedicationFrequency
      */
     public $Frequency;
 
     /**
-     * @var Code
+     * @var PlanOfCareMedicationProduct
      */
     public $Product;
 }

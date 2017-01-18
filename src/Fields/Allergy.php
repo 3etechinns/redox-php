@@ -5,27 +5,27 @@ namespace RoundingWell\Redox\Fields;
 class Allergy extends AbstractField
 {
     /**
-     * @var Code
+     * @var AllergyType
      */
     public $Type;
 
     /**
-     * @var Code
+     * @var AllergySubstance
      */
     public $Substance;
 
     /**
-     * @var Code[]
+     * @var AllergyReaction[]
      */
     public $Reaction;
 
     /**
-     * @var Code
+     * @var AllergySeverity
      */
     public $Severity;
 
     /**
-     * @var Code
+     * @var AllergyStatus
      */
     public $Status;
 

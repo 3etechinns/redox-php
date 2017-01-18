@@ -15,17 +15,17 @@ class Medication extends AbstractField
     public $FreeTextSig;
 
     /**
-     * @var Dose
+     * @var MedicationDose
      */
     public $Dose;
 
     /**
-     * @var Dose
+     * @var MedicationRate
      */
     public $Rate;
 
     /**
-     * @var Code
+     * @var MedicationRoute
      */
     public $Route;
 
@@ -40,12 +40,12 @@ class Medication extends AbstractField
     public $EndDate;
 
     /**
-     * @var Frequency
+     * @var MedicationFrequency
      */
     public $Frequency;
 
     /**
-     * @var Product
+     * @var MedicationProduct
      */
     public $Product;
 }

@@ -5,12 +5,12 @@ namespace RoundingWell\Redox\Fields;
 class Header extends AbstractField
 {
     /**
-     * @var Document
+     * @var HeaderDocument
      */
     public $Document;
 
     /**
-     * @var Patient
+     * @var HeaderPatient
      */
     public $Patient;
 }
