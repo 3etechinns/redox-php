@@ -3,18 +3,15 @@
 namespace RoundingWell\Redox\Fields;
 
 use DateTimeInterface;
-use DateTimeZone;
 
 abstract class AbstractProcedureField extends AbstractField
 {
-    /**
-     * Format a timestamp as a date.
-     *
-     * @param DateTimeInterface $date
-     * @return string
-     */
-    protected function formatTimestamp(DateTimeInterface $date)
+    protected function customFormatters()
     {
-        return $date->format('Ymd');
+        return [
+            'DateTime' => static function (DateTimeInterface $date) {
+                return $date->format('Ymd');
+            },
+        ];
     }
 }

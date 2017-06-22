@@ -6,51 +6,51 @@ use DateTimeInterface;
 use DateTimeZone;
 use RoundingWell\Redox\RedoxInterface;
 
+use function RoundingWell\Redox\to_datetime_string;
+use function RoundingWell\Redox\to_utc_date;
+
 trait CanBeConvertedToArray /* implements RedoxInterface */
 {
     public function toArray()
     {
-        $values = get_object_vars($this);
+        $output = [];
+        $custom = $this->customFormatters();
 
-        return array_map(function ($value) {
+        foreach (get_object_vars($this) as $key => $value) {
+            $output[$key] = call_user_func($this->formatterFor($key, $custom), $value);
+        }
+
+        return $output;
+
+    }
+
+    /**
+     * @return callable
+     */
+    protected function formatterFor($key, array $custom)
+    {
+        if (!empty($custom[$key])) {
+            return $custom[$key];
+        }
+
+        return static function ($value) {
             if ($value instanceof RedoxInterface) {
                 return $value->toArray();
             }
 
             if ($value instanceof DateTimeInterface) {
-                $value = $this->dateInUtc($value);
-                return $this->formatTimestamp($value);
+                return to_datetime_string(to_utc_date($value));
             }
 
             return $value;
-        }, $values);
+        };
     }
 
     /**
-     * @param DateTimeInterface $date
-     * @return DateTimeInterface
+     * @return array [field => callable, ...]
      */
-    private function dateInUtc(DateTimeInterface $date)
+    protected function customFormatters()
     {
-        $date = clone $date;
-        $tz = new DateTimeZone('UTC');
-        return $date->setTimezone($tz);
-    }
-
-    /**
-     * Format a timestamp as ISO8601, with microseconds.
-     *
-     * @param DateTimeInterface $date
-     * @return string
-     */
-    protected function formatTimestamp(DateTimeInterface $date)
-    {
-        // ISO8601, with microseconds and "Z" for the offset
-        return sprintf(
-            '%sT%s.%sZ',
-            $date->format('Y-m-d'),
-            $date->format('H:i:s'),
-            substr($date->format('u'), 0, 3)
-        );
+        return [];
     }
 }
