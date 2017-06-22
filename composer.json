@@ -31,6 +31,6 @@
     },
     "require-dev": {
         "mtdowling/jmespath.php": "^2.4",
-        "phpunit/phpunit": "^5.0"
+        "phpunit/phpunit": "^5.7"
     }
 }

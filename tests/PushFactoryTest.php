@@ -2,7 +2,7 @@
 
 namespace RoundingWell\Redox;
 
-use PHPUnit_Framework_TestCase as TestCase;
+use PHPUnit\Framework\TestCase;
 
 class PushFactoryTest extends TestCase
 {
