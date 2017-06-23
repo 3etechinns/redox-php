@@ -58,6 +58,14 @@ abstract class MessageTestCase extends TestCase
     }
 
     /**
+     * @return string
+     */
+    protected function samplePath()
+    {
+        return __DIR__ . '/../samples';
+    }
+
+    /**
      * @return AbstractMessage
      */
     private function make($constructor, $input)

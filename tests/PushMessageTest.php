@@ -6,7 +6,7 @@ class PushMessageTest extends MessageTestCase
 {
     protected function sampleFile()
     {
-        return __DIR__ . '/samples/pushmessage.json';
+        return $this->samplePath() . '/pushmessage.json';
     }
 
     protected function messageClass()
