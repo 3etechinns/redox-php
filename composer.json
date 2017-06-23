@@ -26,14 +26,25 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "RoundingWell\\Redox\\": "tests/"
+            "RoundingWell\\Redox\\": "tests/",
+            "RoundingWell\\Redox\\Generator\\": "generator/"
         }
     },
     "require": {
         "netresearch/jsonmapper": "^1.1"
     },
     "require-dev": {
+        "krlove/code-generator": "^1.0",
         "mtdowling/jmespath.php": "^2.4",
         "phpunit/phpunit": "^5.7"
+    },
+    "scripts": {
+        "clean": [
+            "rm -rf src/Fields",
+            "rm -rf src/Messages",
+            "rm -rf tests/Messages"
+        ],
+        "generate": "php bin/generate",
+        "test": "phpunit"
     }
 }

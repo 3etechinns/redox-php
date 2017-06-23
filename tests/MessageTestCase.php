@@ -21,7 +21,7 @@ abstract class MessageTestCase extends TestCase
     /**
      * @return string[] JMES paths for valid message sections
      */
-    abstract protected function messageSections();
+    // abstract protected function messageSections();
 
     /**
      * Tests the named constructors of the message.
@@ -41,13 +41,26 @@ abstract class MessageTestCase extends TestCase
     public function testMessage()
     {
         // Parse the sample JSON as the control.
-        $json = json_decode(file_get_contents($this->sampleFile()));
+        $json = trim(file_get_contents($this->sampleFile()));
 
         // Create a message from the sample file and then convert it back into
         // JSON to enforce serialization rules. Direct comparison against the
         // message will not work because of timestamps, etc.
-        $message = json_decode(json_encode($this->make('fromFile', $this->sampleFile())));
+        $message = json_encode($this->make('fromFile', $this->sampleFile()), JSON_PRETTY_PRINT);
 
+        // Redox samples are indented with 3 (three?!) spaces...
+        // (╯°□°)╯︵ ┻━┻
+        $message = preg_replace_callback(
+            '/^ ++/m',
+            static function ($matches) {
+                return str_replace('    ', '   ', $matches[0]);
+            },
+            $message
+        );
+
+        $this->assertSame($json, $message);
+
+        /*
         foreach ($this->messageSections() as $path) {
             $this->assertSame(
                 search($path, $json),
@@ -55,6 +68,7 @@ abstract class MessageTestCase extends TestCase
                 $path
             );
         }
+         */
     }
 
     /**

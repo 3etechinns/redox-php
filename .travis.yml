@@ -20,8 +20,11 @@ install:
   - if [[ $MINIMUM_VERSIONS = false ]]; then composer install; fi
   - if [[ $MINIMUM_VERSIONS = true ]]; then composer update --no-interaction --prefer-lowest; fi
 
+before_script:
+  - composer generate
+
 script:
-  - vendor/bin/phpunit
+  - composer test
 
 after_script:
   - |

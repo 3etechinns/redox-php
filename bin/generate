@@ -1,0 +1,67 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+use RoundingWell\Redox\Generator\MessageGenerator;
+use RoundingWell\Redox\Generator\Hooks;
+
+/** @var \RoundingWell\Redox\Generator\Hooks\Hook[] */
+$hooks = array_map(
+    function ($hook) {
+        return new $hook();
+    },
+    [
+        // Define all hooks that will be used
+    ]
+);
+
+// Find all generators
+$generators = new RecursiveDirectoryIterator(__DIR__ . '/../samples');
+$generators = new RecursiveIteratorIterator($generators);
+$generators = new RegexIterator($generators, '/^.+\.json$/i', RegexIterator::GET_MATCH);
+
+/** @var \RoundingWell\Redox\Generator\Generator[] */
+$generators = array_map(
+    function ($path) use ($hooks) {
+        // Determine the message class from the sample
+        $json = json_decode(file_get_contents($path));
+
+        // Make sure we have a valid sample file
+        if (empty($json->Meta->DataModel) || empty($json->Meta->DataModel)) {
+            throw new InvalidArgumentException(sprintf(
+                "Cannot determine model for sample %s\n\n%s",
+                $path,
+                var_export($json->Meta, true)
+            ));
+        }
+
+        // Determine the message model name
+        $model = "Messages\\{$json->Meta->DataModel}\\{$json->Meta->EventType}";
+
+        return new MessageGenerator($model, $json, $hooks);
+    },
+    array_keys(iterator_to_array($generators))
+);
+
+array_map(
+    function ($generator) {
+        foreach ($generator->getFiles() as $file) {
+            $path = $file->getFilename();
+            $directory = dirname($path);
+
+            if (!is_dir($directory)) {
+                mkdir($directory, 0755, true);
+            }
+
+            if (false && is_file($path)) {
+                echo "Skipping -> $path\n";
+                continue;
+            }
+
+            echo "Generating -> $path\n";
+            file_put_contents($path, $file->getCode());
+        }
+    },
+    $generators
+);
