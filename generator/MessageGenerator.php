@@ -43,28 +43,13 @@ class MessageGenerator extends Generator
     }
 
     /**
-     * @return bool
+     * @return array
      */
-    protected function hasHookFor($key)
+    protected function getHooks($key)
     {
-        foreach ($this->hooks as $hook) {
-            if ($hook->accepts($key)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
-     * @return string
-     */
-    protected function getHookValue($key)
-    {
-        foreach ($this->hooks as $hook) {
-            if ($hook->accepts($key)) {
-                return $hook->type();
-            }
-        }
+        return array_filter($this->hooks, function ($hook) use ($key) {
+            return $hook->accepts($this->getModelClass(), $key);
+        });
     }
 
     /**

@@ -117,7 +117,25 @@ class Generator
      * @param bool $maybeNull
      * @return string
      */
-    private function getPropertyDoc($key, $value, $maybeNull = true)
+    private function getPropertyDoc($key, $value)
+    {
+        $type = $this->getValueType($key, $value);
+        $path = $this->getPropertyPath($key);
+        $hooks = $this->message->getHooks($path);
+
+        foreach ($hooks as $hook) {
+            $type = $hook->type($type);
+        }
+
+        return $type;
+    }
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return string
+     */
+    private function getValueType($key, $value)
     {
         if (is_object($value)) {
             $this->generators[] = $generator = $this->getFieldGenerator($this->singular($key), $value);
@@ -125,14 +143,12 @@ class Generator
             return '\\' . $generator->getTargetClass();
         }
 
-        if (is_array($value) && isset($value[0])) {
-            return $this->getPropertyDoc($key, $value[0], false) . '[]';
-        }
+        if (is_array($value)) {
+            if (isset($value[0])) {
+                return $this->getValueType($key, $value[0]) . '[]';
+            }
 
-        $path = $this->getPropertyPath($key);
-
-        if ($this->message->hasHookFor($path)) {
-            return $this->message->getHookValue($path);
+            return 'string[]';
         }
 
         $type = strtolower(gettype($value));
@@ -141,7 +157,7 @@ class Generator
             $type = 'string';
         }
 
-        return $maybeNull ? "$type|null" : $type;
+        return $type;
     }
 
     /**

@@ -13,12 +13,12 @@ class DateTimeHook implements Hook
         'Visit.VisitDateTime',
     ];
 
-    public function accepts($key)
+    public function accepts($model, $key)
     {
         return in_array($key, $this->fields);
     }
 
-    public function type()
+    public function type($hint)
     {
         return '\DateTime';
     }
