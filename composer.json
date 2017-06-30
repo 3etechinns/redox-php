@@ -34,7 +34,10 @@
         "netresearch/jsonmapper": "^1.1"
     },
     "require-dev": {
+        "guzzlehttp/guzzle": "^6.3",
+        "kevinrob/guzzle-cache-middleware": "^2.0",
         "krlove/code-generator": "^1.0",
+        "league/flysystem": "^1.0",
         "mtdowling/jmespath.php": "^2.4",
         "phpunit/phpunit": "^5.7"
     },

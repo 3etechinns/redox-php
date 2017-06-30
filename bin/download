@@ -1,0 +1,40 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../vendor/autoload.php';
+
+$schemas = [
+    'PatientAdmin' => [
+        'Arrival',
+        'Cancel',
+        'Discharge',
+        'NewPatient',
+        'PatientUpdate',
+        'PatientMerge',
+        'PreAdmit',
+        'Registration',
+        'Transfer',
+        'VisitUpdate',
+    ],
+];
+
+$schemaDir = realpath(__DIR__ . '/../schema');
+
+/** @var GuzzleHttp\Client */
+$guzzle = require __DIR__ . '/../config/injection/guzzle.php';
+
+foreach ($schemas as $group => $models) {
+    if (!is_dir("$schemaDir/$group")) {
+        mkdir("$schemaDir/$group", 0755);
+    }
+
+    echo "Downloading $group schemas ...\n";
+    foreach ($models as $model) {
+        echo " -> $model\n";
+        $response = $guzzle->get(strtolower("$group/$model.json"), [
+            // https://github.com/Kevinrob/guzzle-cache-middleware/issues/82
+            // 'sink' => "$schemaDir/$group/$model.json"
+        ]);
+        file_put_contents("$schemaDir/$group/$model.json", (string) $response->getBody());
+    }
+}
