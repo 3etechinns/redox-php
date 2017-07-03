@@ -3,66 +3,46 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-use RoundingWell\Redox\Generator\MessageGenerator;
-use RoundingWell\Redox\Generator\Hooks;
+use RoundingWell\Schematic\Generator;
+use RoundingWell\Schematic\Schema;
 
-/** @var \RoundingWell\Redox\Generator\Hooks\Hook[] */
-$hooks = array_map(
-    function ($hook) {
-        return new $hook();
-    },
-    [
-        // Define all hooks that will be used
-        Hooks\DateTimeHook::class,
-    ]
-);
+// Configuration for generator
+$schemaDir = realpath(__DIR__ . '/../schema');
+$targetDir = realpath(__DIR__ . '/../src');
+$namespace = 'RoundingWell\\Redox';
+$baseClass = 'RoundingWell\\Redox\\AbstractMessage';
 
-// Find all generators
-$generators = new RecursiveDirectoryIterator(__DIR__ . '/../samples');
-$generators = new RecursiveIteratorIterator($generators);
-$generators = new RegexIterator($generators, '/^.+\.json$/i', RegexIterator::GET_MATCH);
+// Find all schemas
+$schemas = new RecursiveDirectoryIterator($schemaDir);
+$schemas = new RecursiveIteratorIterator($schemas);
+$schemas = new RegexIterator($schemas, '/^.+\.json$/i', RegexIterator::GET_MATCH);
 
-/** @var \RoundingWell\Redox\Generator\Generator[] */
-$generators = array_map(
-    function ($path) use ($hooks) {
-        // Determine the message class from the sample
-        $json = json_decode(file_get_contents($path));
+// Load test template and set configuration
+$testDir = realpath(__DIR__ . '/../tests');
+$testCode = file_get_contents(__DIR__ . '/../tests/MessageTest.template');
+$testVars = ['%group%', '%message%'];
 
-        // Make sure we have a valid sample file
-        if (empty($json->Meta->DataModel) || empty($json->Meta->DataModel)) {
-            throw new InvalidArgumentException(sprintf(
-                "Cannot determine model for sample %s\n\n%s",
-                $path,
-                var_export($json->Meta, true)
-            ));
-        }
+$generator = new Generator();
+foreach ($schemas as $schemaFile => $_) {
+    $relativePath = trim(str_replace($schemaDir, '', $schemaFile), '/');
+    $groupName = pathinfo($relativePath, PATHINFO_DIRNAME);
+    $messageName = pathinfo($relativePath, PATHINFO_FILENAME);
+    $messageClass = "$namespace\\Message\\$groupName\\$messageName";
+    $testReplacements = [
+        $groupName,
+        $messageName,
+    ];
 
-        // Determine the message model name
-        $model = "Messages\\{$json->Meta->DataModel}\\{$json->Meta->EventType}";
-
-        return new MessageGenerator($model, $json, $hooks);
-    },
-    array_keys(iterator_to_array($generators))
-);
-
-array_map(
-    function ($generator) {
-        foreach ($generator->getFiles() as $file) {
-            $path = $file->getFilename();
-            $directory = dirname($path);
-
-            if (!is_dir($directory)) {
-                mkdir($directory, 0755, true);
-            }
-
-            if (false && is_file($path)) {
-                echo "Skipping -> $path\n";
-                continue;
-            }
-
-            echo "Generating -> $path\n";
-            file_put_contents($path, $file->getCode());
-        }
-    },
-    $generators
-);
+    echo "Generating $groupName $messageName\n";
+    $schema = Schema::fromFile($schemaFile);
+    $classes = $generator->generate($schema, $messageClass, $baseClass);
+    echo " classes ", str_repeat('.', count($classes));
+    $files = $generator->write($classes, $targetDir, $namespace);
+    echo " ✔\n";
+    echo " test";
+    file_put_contents(
+        "$testDir/{$messageName}Test.php",
+        str_replace($testVars, $testReplacements, $testCode)
+    );
+    echo " ✔\n";
+}

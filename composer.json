@@ -26,8 +26,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "RoundingWell\\Redox\\": "tests/",
-            "RoundingWell\\Redox\\Generator\\": "generator/"
+            "RoundingWell\\Redox\\": "tests/"
         }
     },
     "require": {
@@ -36,16 +35,15 @@
     "require-dev": {
         "guzzlehttp/guzzle": "^6.3",
         "kevinrob/guzzle-cache-middleware": "^2.0",
-        "krlove/code-generator": "^1.0",
         "league/flysystem": "^1.0",
         "mtdowling/jmespath.php": "^2.4",
-        "phpunit/phpunit": "^5.7"
+        "phpunit/phpunit": "^5.7",
+        "rwos/schematic": "^0.4"
     },
     "scripts": {
         "clean": [
-            "rm -rf src/Fields",
-            "rm -rf src/Messages",
-            "rm -rf tests/Messages"
+            "rm -rf src/Message",
+            "rm -rf tests/Message"
         ],
         "generate": "php bin/generate",
         "test": "phpunit"
