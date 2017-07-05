@@ -10,6 +10,8 @@ PHP mappings for [Redox Engine](https://www.redoxengine.com/). Attempts to be
 [PSR-1](http://www.php-fig.org/psr/psr-1/), [PSR-2](http://www.php-fig.org/psr/psr-2/),
 and [PSR-4](http://www.php-fig.org/psr/psr-2/) compliant.
 
+**DEPRECATED AND WILL EVENTUALLY BE DELETED.** We have decided to take a [Tolerant Reader](https://martinfowler.com/bliki/TolerantReader.html) approach instead of using code generation.
+
 ## Installation
 
 ```
